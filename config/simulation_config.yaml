@@ -1,0 +1,44 @@
+# Simulation Configuration
+simulation:
+  time_unit: "ms"
+  max_processes: 1000
+  simulation_duration: 100000  # in ms
+  context_switch_time: 2
+  log_level: "INFO"
+  
+# Workload Generation
+workload:
+  generation_method: "synthetic"  # or "trace"
+  num_processes: 500
+  arrival_distribution: "poisson"
+  arrival_lambda: 0.01  # for Poisson
+  cpu_burst_distribution: "normal"
+  cpu_burst_mean: 50
+  cpu_burst_std: 20
+  io_burst_distribution: "uniform"
+  io_burst_min: 10
+  io_burst_max: 100
+  priority_min: 1
+  priority_max: 10
+  
+# Scheduling Algorithms
+scheduling:
+  round_robin_quantum: 20
+  mlfq_levels: 3
+  mlfq_quantums: [10, 20, 40]
+  priority_aging_interval: 1000
+  
+# Experiments
+experiments:
+  baseline:
+    num_processes: 500
+    workload_type: "mixed"
+    
+  sensitivity:
+    rr_quantums: [5, 10, 20, 50, 100]
+    process_counts: [100, 500, 1000]
+    
+  visualization:
+    gantt_processes: 20
+    save_format: "png"
+    dpi: 300
